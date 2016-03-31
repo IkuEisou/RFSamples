@@ -1,0 +1,40 @@
+*** Settings ***
+Documentation     A resource file for testing Browser
+Library           Selenium2Library
+Library           SikuliLibrary
+Library           Screenshot    ${SAVEDIR}
+
+*** Variables ***
+${SAVEDIR}        ${CURDIR}${/}img
+
+*** Keywords ***
+Open Login Page
+    [Arguments]    ${loginurl}    ${browser}=ie
+    [Documentation]    Opens browser to login page
+    Open Browser    ${loginurl}    ${browser}
+    Maximize Browser Window
+
+Login OA
+    [Arguments]    ${name}    ${password}
+    Selenium2Library.Input Text    name=j_username    ${name}
+    Selenium2Library.Input Text    name=j_password    ${password}
+    SikuliLibrary.Click    ${SAVEDIR}${/}btnLogin.png
+
+Login Failed
+    [Arguments]    ${name}    ${password}    ${expected}
+    Login OA    ${name}    ${password}
+    SikuliLibrary.Screen Should Contain    ${expected}
+    Take Screenshot    login.jpg
+    SikuliLibrary.Click    ${SAVEDIR}${/}btnLoginOK.png
+    [Teardown]    Clear Login Input
+
+Login Successfully
+    [Arguments]    ${name}    ${password}    ${expected}
+    Login OA    ${name}    ${password}
+    Wait Until Page Contains    欢迎
+    Take Screenshot    login.jpg
+    Page Should Contain    ${expected}
+
+Clear Login Input
+    Clear Element Text    name=j_username
+    Clear Element Text    name=j_password

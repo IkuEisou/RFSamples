@@ -1,0 +1,31 @@
+*** Settings ***
+Suite Setup       Open Login Page    ${TITLE}
+Suite Teardown    Close Browser
+Test Setup
+Test Teardown
+Test Template
+Test Timeout      30 seconds
+Resource          common.txt
+
+*** Variables ***
+${TITLE}          协同办公平台
+${HOST}           oa.fnst.cn.fujitsu.com/oa/themes/mskin/login/login.jsp
+${LOGIN URL}      http://${HOST}
+${BROWSER}        ie
+${EMPTY_PASS_MSG}    ${SAVEDIR}${/}emptyPass.png    # 用户密码不能为空
+${EMPTY_USER_MSG}    ${SAVEDIR}${/}emptyUser.png    # 用户名不能为空
+${ERROR_USER_MSG}    ${SAVEDIR}${/}loginFail.png    # 验证失败，用户名、密码或附加码错误！
+
+*** Test Cases ***
+LoginFailed
+    [Setup]
+    [Template]    Login Failed
+    [Timeout]
+    008021    123    ${ERROR_USER_MSG}
+    ddddd    ${EMPTY}    ${EMPTY_PASS_MSG}
+    ${EMPTY}    ddddd    ${EMPTY_USER_MSG}
+    [Teardown]
+
+LoginSuccess
+    [Template]    Login Successfully
+    008029

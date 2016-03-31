@@ -1,0 +1,10 @@
+*** Settings ***
+Library           ../MyLibrary.py
+Resource          业务关键字.txt
+
+*** Test Cases ***
+百度搜索
+    百度搜索    iphone    iphone
+
+百度翻译
+    Is Translate    Test    测验

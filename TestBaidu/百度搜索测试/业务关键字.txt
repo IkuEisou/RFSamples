@@ -1,0 +1,14 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+百度搜索
+    [Arguments]    ${keyword}    ${result}
+    Open Browser    https://www.baidu.com/    ie
+    Input Text    id=kw    ${keyword}
+    Click button    id=su
+    Sleep    2
+    ${title}    Get Title
+    Should Contain    ${title}    ${result}
+    Capture Page Screenshot    ff.png
+    Close Browser

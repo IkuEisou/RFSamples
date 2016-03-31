@@ -1,0 +1,6 @@
+*** Settings ***
+Resource          业务关键字.txt
+
+*** Test Cases ***
+IE
+    百度搜索    iphone    iphone
