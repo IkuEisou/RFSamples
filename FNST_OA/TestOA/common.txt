@@ -9,7 +9,7 @@ ${SAVEDIR}        ${CURDIR}${/}img
 
 *** Keywords ***
 Open Login Page
-    [Arguments]    ${loginurl}    ${browser}=ie
+    [Arguments]    ${loginurl}    ${browser}
     [Documentation]    Opens browser to login page
     Open Browser    ${loginurl}    ${browser}
     Maximize Browser Window
@@ -26,12 +26,13 @@ Login Failed
     SikuliLibrary.Screen Should Contain    ${expected}
     Take Screenshot    login.jpg
     SikuliLibrary.Click    ${SAVEDIR}${/}btnLoginOK.png
-    [Teardown]    Clear Login Input
+    Clear Login Input
+    [Teardown]
 
 Login Successfully
     [Arguments]    ${name}    ${password}    ${expected}
     Login OA    ${name}    ${password}
-    Wait Until Page Contains    欢迎
+    Wait Until Page Contains    ${expected}
     Take Screenshot    login.jpg
     Page Should Contain    ${expected}
 

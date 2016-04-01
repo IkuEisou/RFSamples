@@ -1,0 +1,18 @@
+*** Settings ***
+Suite Setup
+Suite Teardown
+Resource          业务关键字.txt
+Resource          测试数据集.txt
+
+*** Variables ***
+
+*** Test Cases ***
+IE
+    [Template]    并发测试百度搜索
+    ${DATA1}    ${DATA1}    ie    ${REMOTE_URL}
+
+Chrome
+    [Template]    并发测试百度搜索
+    ${DATA2}    ${DATA2}    gc    ${REMOTE_URL}
+
+*** Keywords ***

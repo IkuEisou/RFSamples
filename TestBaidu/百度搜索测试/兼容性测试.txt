@@ -1,6 +1,11 @@
 *** Settings ***
 Resource          业务关键字.txt
+Resource          测试数据集.txt
 
 *** Test Cases ***
-IE
-    百度搜索    iphone    iphone
+单case多浏览器
+    [Template]    测试百度搜索
+    ${DATA1}    ${DATA1}    ie
+    ${DATA2}    ${DATA2}    gc
+
+*** Keywords ***

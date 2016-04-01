@@ -1,16 +1,16 @@
 *** Settings ***
-Suite Setup       Open Login Page    ${TITLE}
+Suite Setup       Open Login Page    ${LOGIN_URL}    ${BROWSER}
 Suite Teardown    Close Browser
 Test Setup
 Test Teardown
 Test Template
-Test Timeout      30 seconds
+Test Timeout      20 seconds
 Resource          common.txt
 
 *** Variables ***
 ${TITLE}          协同办公平台
 ${HOST}           oa.fnst.cn.fujitsu.com/oa/themes/mskin/login/login.jsp
-${LOGIN URL}      http://${HOST}
+${LOGIN_URL}      http://${HOST}
 ${BROWSER}        ie
 ${EMPTY_PASS_MSG}    ${SAVEDIR}${/}emptyPass.png    # 用户密码不能为空
 ${EMPTY_USER_MSG}    ${SAVEDIR}${/}emptyUser.png    # 用户名不能为空
@@ -27,5 +27,6 @@ LoginFailed
     [Teardown]
 
 LoginSuccess
+    [Setup]
     [Template]    Login Successfully
-    008029
+    008029    clever123    郁永葱

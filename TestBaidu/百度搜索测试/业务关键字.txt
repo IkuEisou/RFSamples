@@ -1,14 +1,30 @@
 *** Settings ***
 Library           Selenium2Library
+Library           Process
 
 *** Keywords ***
 百度搜索
     [Arguments]    ${keyword}    ${result}
-    Open Browser    https://www.baidu.com/    ie
     Input Text    id=kw    ${keyword}
     Click button    id=su
-    Sleep    2
+    sleep    5
     ${title}    Get Title
     Should Contain    ${title}    ${result}
     Capture Page Screenshot    ff.png
+
+测试百度搜索
+    [Arguments]    ${keyword}    ${result}    ${browser}=ie
+    Open Browser    http://www.baidu.com    ${browser}
+    百度搜索    ${keyword}    ${result}
     Close Browser
+
+并发测试百度搜索
+    [Arguments]    ${keyword}    ${result}    ${browser}    ${remoteURL}
+    Open Browser    http://www.baidu.com    ${browser}    remote_url=${remoteURL}
+    百度搜索    ${keyword}    ${result}
+    Close Browser
+
+启动HUB
+    Run Process    java -jar ${HUBPATH}${/}selenium-server-standalone-2.47.1.jar -role hub    shell=True
+    Run Process    java -jar ${HUBPATH}${/}selenium-server-standalone-2.47.1.jar -role node -port 5555 \ -browser \ browserName=chrome    shell=True
+    Run Process    java -jar ${HUBPATH}${/}selenium-server-standalone-2.47.1.jar -role node -port 5556 \ -browser \ browserName="internet explorer"    shell=True

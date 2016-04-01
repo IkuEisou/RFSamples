@@ -1,0 +1,5 @@
+*** Variables ***
+${DATA1}          iphone
+${DATA2}          小米
+${REMOTE_URL}     http://127.0.0.1:4444/wd/hub
+${HUBPATH}        D:\\Old\\install\\selenium-2.44.0

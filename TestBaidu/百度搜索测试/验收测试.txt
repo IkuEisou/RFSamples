@@ -1,5 +1,6 @@
 *** Settings ***
 Library           ../MyLibrary.py
+Resource          测试数据集.txt
 Resource          业务关键字.txt
 
 *** Test Cases ***
