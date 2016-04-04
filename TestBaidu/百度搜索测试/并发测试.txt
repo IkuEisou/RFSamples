@@ -1,6 +1,7 @@
 *** Settings ***
 Suite Setup
 Suite Teardown
+Test Timeout      30 seconds
 Resource          业务关键字.txt
 Resource          测试数据集.txt
 
@@ -11,8 +12,14 @@ IE
     [Template]    并发测试百度搜索
     ${DATA1}    ${DATA1}    ie    ${REMOTE_URL}
 
+FireFox
+    [Template]    并发测试百度搜索
+    ${DATA1}    ${DATA1}    ff    ${REMOTE_URL}
+    ${DATA2}    ${DATA2}    ff    ${REMOTE_URL}
+
 Chrome
     [Template]    并发测试百度搜索
+    ${DATA1}    ${DATA1}    gc    ${REMOTE_URL}
     ${DATA2}    ${DATA2}    gc    ${REMOTE_URL}
 
 *** Keywords ***

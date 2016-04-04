@@ -1,10 +1,13 @@
 *** Settings ***
 Library           Selenium2Library
 Library           Process
+Library           OperatingSystem
 
 *** Keywords ***
 百度搜索
     [Arguments]    ${keyword}    ${result}
+    Maximize Browser Window
+    sleep    3
     Input Text    id=kw    ${keyword}
     Click button    id=su
     sleep    5
@@ -17,6 +20,7 @@ Library           Process
     Open Browser    http://www.baidu.com    ${browser}
     百度搜索    ${keyword}    ${result}
     Close Browser
+    [Teardown]
 
 并发测试百度搜索
     [Arguments]    ${keyword}    ${result}    ${browser}    ${remoteURL}

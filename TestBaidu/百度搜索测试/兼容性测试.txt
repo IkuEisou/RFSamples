@@ -2,10 +2,17 @@
 Resource          业务关键字.txt
 Resource          测试数据集.txt
 
+*** Variables ***
+${SELENIUM_SERVER_JAR}    /Users/yuyongcong/Downloads/selenium/selenium-server-standalone-2.48.0.jar
+
 *** Test Cases ***
 单case多浏览器
     [Template]    测试百度搜索
-    ${DATA1}    ${DATA1}    ie
+    ${DATA1}    ${DATA1}    ff
     ${DATA2}    ${DATA2}    gc
+
+Sarari
+    Set Environment Variable    SELENIUM_SERVER_JAR    ${SELENIUM_SERVER_JAR}
+    Open Browser    http://www.baidu.com    safari
 
 *** Keywords ***
