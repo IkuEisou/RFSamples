@@ -6,13 +6,20 @@ Resource          测试数据集.txt
 ${SELENIUM_SERVER_JAR}    /Users/yuyongcong/Downloads/selenium/selenium-server-standalone-2.48.0.jar
 
 *** Test Cases ***
-单case多浏览器
+IE
     [Template]    测试百度搜索
-    ${DATA1}    ${DATA1}    ff
-    ${DATA2}    ${DATA2}    gc
+    ${DATA1}    ${DATA1}    ie
 
 Sarari
     Set Environment Variable    SELENIUM_SERVER_JAR    ${SELENIUM_SERVER_JAR}
     Open Browser    http://www.baidu.com    safari
+
+Chrome
+    [Template]    测试百度搜索
+    ${DATA2}    ${DATA2}    gc
+
+Firefox
+    [Template]    测试百度搜索
+    ${DATA1}    ${DATA1}    ff
 
 *** Keywords ***

@@ -1,7 +1,6 @@
 *** Settings ***
 Suite Setup
 Suite Teardown
-Test Timeout      30 seconds
 Resource          业务关键字.txt
 Resource          测试数据集.txt
 
