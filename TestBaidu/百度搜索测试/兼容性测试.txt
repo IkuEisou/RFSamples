@@ -11,8 +11,10 @@ IE
     ${DATA1}    ${DATA1}    ie
 
 Sarari
-    Set Environment Variable    SELENIUM_SERVER_JAR    ${SELENIUM_SERVER_JAR}
-    Open Browser    http://www.baidu.com    safari
+    [Documentation]    运行此用例需要先打开safari
+    [Setup]    Set Environment Variable    SELENIUM_SERVER_JAR    ${SELENIUM_SERVER_JAR}
+    [Template]    测试百度搜索
+    ${DATA1}    ${DATA1}    safari
 
 Chrome
     [Template]    测试百度搜索
